@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Constants\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Model\" />
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmNavigation.Wpf" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ElectronicJournal_Library">
+      <HintPath>..\..\ElectronicJournal_Library\ElectronicJournal_Library\bin\Debug\netstandard2.0\ElectronicJournal_Library.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
