@@ -70,6 +70,77 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 		#endregion
 
+		#region Commands
+
+		#region Управление аккаунтами (переход)
+		RelayCommand gotoManagingUserAccountsView;
+
+		public ICommand GoToManagingUserAccountsViewCommand
+		{
+			get
+			{
+				if(gotoManagingUserAccountsView == null)
+				{
+					gotoManagingUserAccountsView = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView));
+				}
+				return gotoManagingUserAccountsView;
+			}
+		}
+		#endregion
+
+
+		#region Управление группами (переход)
+		RelayCommand gotoManagingGroupsView;
+		
+		public ICommand GoToManagingGroupsViewCommand
+		{
+			get
+			{
+				if (gotoManagingGroupsView == null)
+				{
+					gotoManagingGroupsView = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.ManagingGroupsView));
+				}
+				return gotoManagingGroupsView;
+			}
+		}
+		#endregion
+
+		#region Управление расписание (переход)
+
+		RelayCommand gotoManagingScheduleView;
+
+		public ICommand GoToManagingScheduleViewCommand
+		{
+			get
+			{
+				if (gotoManagingScheduleView == null)
+				{
+					gotoManagingScheduleView = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.ManagingScheduleView));
+				}
+				return gotoManagingScheduleView;
+			}
+		}
+
+		#endregion
+
+		#region Формирование отчетов (переход)
+		RelayCommand gotoReportingView;
+
+		public ICommand GoTogotoReportingViewCommand
+		{
+			get
+			{
+				if (gotoReportingView == null)
+				{
+					gotoReportingView = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.ReportingView));
+				}
+				return gotoReportingView;
+			}
+		}
+		#endregion
+
+		#endregion
+
 		public void OnNavigatedTo(object arg)
 		{
 			if (arg is Users)

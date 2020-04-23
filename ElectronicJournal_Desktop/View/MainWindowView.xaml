@@ -26,6 +26,7 @@
             Margin="5"
             Padding="5"/>
 
+        
         <StackPanel Grid.Column="2" Grid.Row="0" Margin="5" >
             <TextBlock 
                 Text="{Binding GetName, Mode=OneWay}"
@@ -44,41 +45,29 @@
         </StackPanel>
         <StackPanel  Grid.Row="1" Grid.ColumnSpan="2"
             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+
             <Button Margin="5" 
                     Padding="5"
-                    Content="Формирование отчета успеваемости"
-                    FontSize="18">
+                    Content="Управление аккаунтами"
+                    FontSize="18"
+                    Command="{Binding GoToManagingUserAccountsViewCommand}">
                 <Button.ToolTip>
                     <ToolTip>
                         <StackPanel>
                             <TextBlock Margin="2" Text="Позвонляет:"/>
-                            <TextBlock Margin="2" Text="        посмотреть успеваемость студента"/>
-                            <TextBlock Margin="2" Text="        посмотреть успеваемость группы"/>
+                            <TextBlock Margin="2" Text="        создавать новые аккаунты"/>
+                            <TextBlock Margin="2" Text="        редактировать аккаунты"/>
+                            <TextBlock Margin="2" Text="        удалять аккаунты"/>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
-
-            <Button Margin="5" 
-                    Padding="5"
-                    Content="Управление расписанием"
-                    FontSize="18">
-                <Button.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock Margin="2" Text="Позвонляет:"/>
-                            <TextBlock Margin="2" Text="        посмотреть расписание группы"/>
-                            <TextBlock Margin="2" Text="        редактировать расписание"/>
-                            <TextBlock Margin="2" Text="        добавлять новые занятия"/>
-                        </StackPanel>
-                    </ToolTip>
-                </Button.ToolTip>
-            </Button>
-
+            
             <Button Margin="5" 
                     Padding="5"
                     Content="Управление группами"
-                    FontSize="18">
+                    FontSize="18"
+                    Command="{Binding GoToManagingGroupsViewCommand}">
                 <Button.ToolTip>
                     <ToolTip>
                         <StackPanel>
@@ -94,19 +83,37 @@
 
             <Button Margin="5" 
                     Padding="5"
-                    Content="Управление аккаунтами"
-                    FontSize="18">
+                    Content="Управление расписанием"
+                    FontSize="18"
+                    Command="{Binding GoToManagingScheduleViewCommand}">
                 <Button.ToolTip>
                     <ToolTip>
                         <StackPanel>
                             <TextBlock Margin="2" Text="Позвонляет:"/>
-                            <TextBlock Margin="2" Text="        создавать новые аккаунты"/>
-                            <TextBlock Margin="2" Text="        редактировать аккаунты"/>
-                            <TextBlock Margin="2" Text="        удалять аккаунты"/>
+                            <TextBlock Margin="2" Text="        посмотреть расписание группы"/>
+                            <TextBlock Margin="2" Text="        редактировать расписание"/>
+                            <TextBlock Margin="2" Text="        добавлять новые занятия"/>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
+
+            <Button Margin="5" 
+                    Padding="5"
+                    Content="Формирование отчета успеваемости"
+                    FontSize="18"
+                    Command="{Binding GoTogotoReportingViewCommand}">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock Margin="2" Text="Позвонляет:"/>
+                            <TextBlock Margin="2" Text="        посмотреть успеваемость студента"/>
+                            <TextBlock Margin="2" Text="        посмотреть успеваемость группы"/>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+
         </StackPanel>
 
     </Grid>

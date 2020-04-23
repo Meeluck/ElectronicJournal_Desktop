@@ -7,6 +7,10 @@ namespace ElectronicJournal_Desktop.Constants
         public const string Welcome = nameof(Welcome);
         public const string AuthorizationView = nameof(AuthorizationView);
         public const string MainWindow = nameof(MainWindow);
-        
+        public const string ManagingUserAccountsView = nameof(ManagingUserAccountsView);
+        public const string ManagingGroupsView = nameof(ManagingGroupsView);
+        public const string ManagingScheduleView = nameof(ManagingScheduleView);
+        public const string ReportingView = nameof(ReportingView);
+
     }
 }
