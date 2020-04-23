@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ElectronicJournal_Desktop.Model
+namespace ElectronicJournal_Desktop.Model.Data
 {
     public partial class Groups
     {

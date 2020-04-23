@@ -1,17 +1,17 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using ElectronicJournal_Desktop.Model;
+using ElectronicJournal_Desktop.Model.Data;
 
 namespace ElectronicJournal_Desktop.Context
 {
-    public partial class ElectronicalJournal_DataBaseContext : DbContext
+    public partial class ElectronicalJournalContext : DbContext
     {
-        public ElectronicalJournal_DataBaseContext()
+        public ElectronicalJournalContext()
         {
         }
 
-        public ElectronicalJournal_DataBaseContext(DbContextOptions<ElectronicalJournal_DataBaseContext> options)
+        public ElectronicalJournalContext(DbContextOptions<ElectronicalJournalContext> options)
             : base(options)
         {
         }
