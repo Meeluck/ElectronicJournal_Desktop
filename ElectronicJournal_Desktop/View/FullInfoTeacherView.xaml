@@ -19,7 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>
             <RowDefinition/>
-            <RowDefinition Height="0.4*"/>
+           
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
@@ -80,18 +80,6 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <Button Content="Редактировать"
-                    FontSize="20"
-                    Margin="5"
-                    Padding="5"/>
-            <Button Content="Удалить"
-                    FontSize="20"
-                    Margin="5"
-                    Padding="5"/>
-        </StackPanel>
+       
     </Grid>
 </UserControl>
