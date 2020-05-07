@@ -103,10 +103,10 @@ namespace ElectronicJournal_Desktop.ViewModel
 					GoFullInfoTeacher();
 					break;
 				case "Деканат":
-
+					GoFullInfoDekant();
 					break;
 				case "Админ":
-
+					GoFullInfoAdmin();
 					break;
 
 				default:
@@ -121,6 +121,14 @@ namespace ElectronicJournal_Desktop.ViewModel
 		private void GoFullInfoTeacher()
 		{
 			_navigationManager.Navigate(NavigationKeys.FullInfoTeacherView, SelectedUser.UserId);
+		}
+		private void GoFullInfoDekant()
+		{
+			_navigationManager.Navigate(NavigationKeys.FullInfoDekanatView, SelectedUser.UserId);
+		}
+		private void GoFullInfoAdmin()
+		{
+			_navigationManager.Navigate(NavigationKeys.FullInfoAdminView, SelectedUser.UserId);
 		}
 		#endregion
 

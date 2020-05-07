@@ -48,6 +48,11 @@ namespace ElectronicJournal_Desktop
 			navigationManager.Register<FullInfoTeacherView>(NavigationKeys.FullInfoTeacherView,
 				() => new FullInfoTeacherViewModel(navigationManager));
 
+			navigationManager.Register<FullInfoDekanatView>(NavigationKeys.FullInfoDekanatView,
+				() => new FullInfoDekanatViewModel(navigationManager));
+
+			navigationManager.Register<FullInfoAdminView>(NavigationKeys.FullInfoAdminView,
+				() => new FullInfoAdminViewModel(navigationManager));
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);

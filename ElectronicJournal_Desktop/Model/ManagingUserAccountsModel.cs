@@ -151,7 +151,7 @@ namespace ElectronicJournal_Desktop.Model
 		#endregion
 
 		#region Подробная информация по админу/деканату
-		public Users FullInfoDekanat(int id)
+		public FullInfoDekanat FullInfoDekanat(int id)
 		{
 			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
 			{
@@ -178,7 +178,7 @@ namespace ElectronicJournal_Desktop.Model
 			return _fullInfoDekanat;
 		}
 
-		public Users FullInfoAdmin(int id)
+		public FullInfoAdmin FullInfoAdmin(int id)
 		{
 			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
 			{
