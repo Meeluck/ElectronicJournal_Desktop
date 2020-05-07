@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ElectronicJournal_Desktop.View"
+             xmlns:local="clr-namespace:ElectronicJournal_Desktop.ViewModel"
+             xmlns:model="clr-namespace:ElectronicJournal_Desktop.Model.Data"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="800">
     <Grid>
@@ -25,17 +26,68 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="24"/>
-        <Button Grid.Row="1"
-                Content="Добавить аккаунт"
-                Margin="5"
-                Padding="5"
-                FontSize="20"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center" >
-        </Button>
-        <ListBox Grid.Row="2"
-                 Grid.ColumnSpan="2">
-        </ListBox>
 
+        <ScrollViewer Grid.Row="2" 
+                      Grid.Column="0"  
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="5">
+            <ListView Margin="5"
+                      Padding="5"
+                      ItemsSource="{Binding UserInformation}"
+                      HorizontalAlignment="Stretch"
+                      FontSize="16"
+                      SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ФИО"
+                                        DisplayMemberBinding="{Binding Path=FullName, Mode=OneWay}"/>
+                        <GridViewColumn Header="Логин" 
+                                        DisplayMemberBinding="{Binding Path=Login, Mode=OneWay}"/>
+                        <GridViewColumn Header="Должность"
+                                        DisplayMemberBinding="{Binding Path=AccessLevelName, Mode=OneWay}"/>
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    VerticalAlignment="Center">
+            
+            <Button Content="Добавить аккаунт"
+                    Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" >
+            </Button>
+
+            <Button Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding ShowFullInfoCommand}">
+                <TextBlock>
+                    <Run Text="Подробная информация"/>
+                    <Run Text="{Binding SelectedUser.Login, Mode=OneWay}"/>
+                </TextBlock>
+            </Button>
+
+            <Button Content="Редактировать аккаунт"
+                    Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" >
+            </Button>
+            <Button Content="Удалить аккаунт"
+                    Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" >
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

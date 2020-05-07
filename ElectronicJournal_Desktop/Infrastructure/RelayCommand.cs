@@ -3,7 +3,6 @@ using System.Windows.Input;
 
 namespace ElectronicJournal_Desktop.Infrastructure
 {
-    //Класс, отвечающий за проверку возможности выполения команды
     class RelayCommand : ICommand
     {
         readonly Action<object> _execute;

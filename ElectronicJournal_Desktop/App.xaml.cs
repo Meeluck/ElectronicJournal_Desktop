@@ -42,10 +42,12 @@ namespace ElectronicJournal_Desktop
 			navigationManager.Register<ReportingView>(NavigationKeys.ReportingView,
 				() => new ReportingViewModel(navigationManager, dialogManager));
 
+			navigationManager.Register<FullInfoStudentView>(NavigationKeys.FullInfoStudentView,
+				() => new FullInfoStudentViewModel(navigationManager));
+
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);
-
 
 		}
 	}

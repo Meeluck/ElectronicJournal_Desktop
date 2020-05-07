@@ -9,9 +9,15 @@ namespace ElectronicJournal_Desktop.Model
 {
 	public class AuthorizationModel
 	{
+		#region Field
+		
 		private string _login;
 		private string _password;
 		private Users _user;
+
+		#endregion
+
+		#region Ctor
 
 		public AuthorizationModel()
 		{
@@ -26,6 +32,10 @@ namespace ElectronicJournal_Desktop.Model
 			_password = password;
 			_user = null;
 		}
+
+		#endregion
+
+		#region Propety
 
 		public string SetLogin
 		{
@@ -46,6 +56,10 @@ namespace ElectronicJournal_Desktop.Model
 				return _user;
 			}
 		}
+
+		#endregion
+
+		#region Поиск логина, проверка уровня доступа и сравнение паролей
 
 		//Метод проверки, существует пользователь с таким логин в бд
 		public bool CheckLogin()
@@ -107,5 +121,7 @@ namespace ElectronicJournal_Desktop.Model
 
 			return ps.ComparePassword(_password);
 		}
+
+		#endregion
 	}
 }

@@ -21,6 +21,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 		private readonly DialogManager _dialogManager;
 		private LoginAndPassword _loginAndPassword;
 		private Users _user;
+		private UserSession _userSession;
 
 		#endregion
 
@@ -111,6 +112,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 		private void GoNext()
 		{
+			UserSession.Instance(_user.UserId);
 			_navigationManager.Navigate(NavigationKeys.MainWindow, _user);
 		}
 		#endregion

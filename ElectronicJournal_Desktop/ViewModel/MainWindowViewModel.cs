@@ -14,6 +14,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 		#region Fields
 		private readonly INavigationManager _navigationManager;
 		private Users _user;
+		private UserSession _userSession;
 		#endregion
 
 		#region Constructor
@@ -32,25 +33,14 @@ namespace ElectronicJournal_Desktop.ViewModel
 		{
 			get
 			{
-				return _user.LastName + " " + _user.FirstName + " " + User.MiddleName;
+				return UserSession.GetName;
 			}
 		}
 		public string AccessLevel
 		{
 			get
 			{
-				string alName = string.Empty;
-				using (ElectronicalJournalContext db = new ElectronicalJournalContext())
-				{
-					var al = from accesslevel in db.AccessLevels
-							 where accesslevel.AccessLevelId == User.AccessLevelId
-							 select accesslevel.AccessLevelName;
-					foreach (var item in al)
-					{
-						alName = item;
-					}
-				}
-				return alName;
+				return UserSession.AccessLevelName;
 			}
 		}
 		public Users User
@@ -144,7 +134,10 @@ namespace ElectronicJournal_Desktop.ViewModel
 		public void OnNavigatedTo(object arg)
 		{
 			if (arg is Users)
+			{
 				User = (Users)arg;
+				_userSession = UserSession.Instance(User.UserId);
+			}
 			else
 				throw new ArgumentException();
 		}
