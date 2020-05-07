@@ -12,6 +12,8 @@ namespace ElectronicJournal_Desktop.Constants
         public const string ManagingScheduleView = nameof(ManagingScheduleView);
         public const string ReportingView = nameof(ReportingView);
         public const string FullInfoStudentView = nameof(FullInfoStudentView);
+        public const string FullInfoTeacherView = nameof(FullInfoTeacherView);
+
 
     }
 }

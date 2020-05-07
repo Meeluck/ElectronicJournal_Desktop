@@ -116,8 +116,14 @@ namespace ElectronicJournal_Desktop.Model
 			{
 				var teacher = from us in db.Users
 							  join al in db.AccessLevels on us.AccessLevelId equals al.AccessLevelId
+							  into alDatails
+							  from alDat in alDatails.DefaultIfEmpty()
 							  join tch in db.Teachers on us.UserId equals tch.UserId
-							  join pos in db.Positions on tch.PositionId equals pos.PositionId
+							  into tchDatail
+							  from tchDat in tchDatail.DefaultIfEmpty()
+							  join pos in db.Positions on tchDat.PositionId equals pos.PositionId
+							  into posDatail
+							  from posDat in posDatail.DefaultIfEmpty()
 							  where us.UserId == id
 							  select new FullInfoTeacher
 							  {
@@ -129,11 +135,11 @@ namespace ElectronicJournal_Desktop.Model
 								  PasswordHash = us.PasswordHash,
 								  PasswordSalt = us.PasswordSalt,
 								  AccessLevelId = us.AccessLevelId,
-								  AcessLevelName = al.AccessLevelName,
+								  AcessLevelName = alDat.AccessLevelName,
 								  Email = us.Email,
 								  Phone = us.Phone,
-								  PositionId = pos.PositionId,
-								  PositionName = pos.PositionName
+								  PositionId = posDat.PositionId,
+								  PositionName = posDat.PositionName
 							  };
 				foreach(var item in teacher)
 				{

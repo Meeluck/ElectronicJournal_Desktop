@@ -45,6 +45,9 @@ namespace ElectronicJournal_Desktop
 			navigationManager.Register<FullInfoStudentView>(NavigationKeys.FullInfoStudentView,
 				() => new FullInfoStudentViewModel(navigationManager));
 
+			navigationManager.Register<FullInfoTeacherView>(NavigationKeys.FullInfoTeacherView,
+				() => new FullInfoTeacherViewModel(navigationManager));
+
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);

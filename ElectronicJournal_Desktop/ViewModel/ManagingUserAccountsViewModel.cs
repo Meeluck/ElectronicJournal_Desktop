@@ -100,7 +100,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 					GoFullInfoStudent();
 					break;
 				case "Преподаватель":
-
+					GoFullInfoTeacher();
 					break;
 				case "Деканат":
 
@@ -118,7 +118,10 @@ namespace ElectronicJournal_Desktop.ViewModel
 		{
 			_navigationManager.Navigate(NavigationKeys.FullInfoStudentView, SelectedUser.UserId);
 		}
-		//private void 
+		private void GoFullInfoTeacher()
+		{
+			_navigationManager.Navigate(NavigationKeys.FullInfoTeacherView, SelectedUser.UserId);
+		}
 		#endregion
 
 	}
