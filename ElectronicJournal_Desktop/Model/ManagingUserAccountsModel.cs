@@ -41,6 +41,7 @@ namespace ElectronicJournal_Desktop.Model
 		FullInfoTeacher _fullInfoTeacher;
 		FullInfoDekanat _fullInfoDekanat;
 		FullInfoAdmin _fullInfoAdmin;
+		ObservableCollection<AccessLevels> _accessLevelsList;
 		#endregion
 
 
@@ -204,6 +205,34 @@ namespace ElectronicJournal_Desktop.Model
 			}
 			return _fullInfoAdmin;
 		}
+		#endregion
+
+		#region Список модификаторов доступа
+		public ObservableCollection<AccessLevels> AccessLevelsList
+		{
+			get
+			{
+				if (_accessLevelsList == null)
+				{
+					_accessLevelsList = new ObservableCollection<AccessLevels>();
+					using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+					{
+						var accessLevels = from al in db.AccessLevels
+										   select new AccessLevels
+										   {
+											   AccessLevelId = al.AccessLevelId,
+											   AccessLevelName = al.AccessLevelName
+										   };
+						foreach (var item in accessLevels)
+						{
+							_accessLevelsList.Add(item);
+						}
+					}
+				}
+				return _accessLevelsList;
+			}
+		}
+
 		#endregion
 	}
 }

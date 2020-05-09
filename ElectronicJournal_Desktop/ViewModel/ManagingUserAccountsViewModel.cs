@@ -121,7 +121,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 		private void GoFullInfoTeacher()
 		{
 			_navigationManager.Navigate(NavigationKeys.FullInfoTeacherView, SelectedUser.UserId);
-		}
+		} 
 		private void GoFullInfoDekant()
 		{
 			_navigationManager.Navigate(NavigationKeys.FullInfoDekanatView, SelectedUser.UserId);
@@ -130,6 +130,24 @@ namespace ElectronicJournal_Desktop.ViewModel
 		{
 			_navigationManager.Navigate(NavigationKeys.FullInfoAdminView, SelectedUser.UserId);
 		}
+		#endregion
+
+		#region Добавление пользователя
+
+		RelayCommand _addUserCommand;
+
+		public ICommand AddUserCommand
+		{
+			get
+			{
+				if(_addUserCommand == null)
+				{
+					_addUserCommand = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.AddNewUsersView));
+				}
+				return _addUserCommand;
+			}
+		}
+
 		#endregion
 
 	}

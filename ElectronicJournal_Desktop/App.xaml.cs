@@ -53,6 +53,9 @@ namespace ElectronicJournal_Desktop
 
 			navigationManager.Register<FullInfoAdminView>(NavigationKeys.FullInfoAdminView,
 				() => new FullInfoAdminViewModel(navigationManager));
+
+			navigationManager.Register<AddNewUsersView>(NavigationKeys.AddNewUsersView,
+				() => new AddNewUsersViewModel(navigationManager, dialogManager));
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);

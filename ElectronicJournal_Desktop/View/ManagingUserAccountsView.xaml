@@ -59,7 +59,8 @@
                     Padding="5"
                     FontSize="18"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch" >
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding AddUserCommand}">
             </Button>
 
             <Button Margin="5"
