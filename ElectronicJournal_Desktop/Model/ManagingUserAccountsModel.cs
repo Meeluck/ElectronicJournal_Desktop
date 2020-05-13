@@ -6,6 +6,7 @@ using ElectronicJournal_Desktop.Model.Interfaces;
 using ElectronicJournal_Desktop.Context;
 using ElectronicJournal_Desktop.Model.Data;
 using System.Collections.ObjectModel;
+using ElectronicJournal_Desktop.View;
 
 namespace ElectronicJournal_Desktop.Model
 {
@@ -42,6 +43,7 @@ namespace ElectronicJournal_Desktop.Model
 		FullInfoDekanat _fullInfoDekanat;
 		FullInfoAdmin _fullInfoAdmin;
 		ObservableCollection<AccessLevels> _accessLevelsList;
+		ObservableCollection<Groups> _groups;
 		#endregion
 
 
@@ -208,6 +210,7 @@ namespace ElectronicJournal_Desktop.Model
 		#endregion
 
 		#region Список модификаторов доступа
+
 		public ObservableCollection<AccessLevels> AccessLevelsList
 		{
 			get
@@ -233,6 +236,76 @@ namespace ElectronicJournal_Desktop.Model
 			}
 		}
 
+		#endregion
+
+		#region Добавление пользователей
+
+		public void AddNewUsers(Users user)
+		{
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				user.AccessLevel = null;
+				db.Users.Add(user);
+				db.SaveChanges();
+			}
+		}
+
+
+		public ObservableCollection<Groups> GetGroups()
+		{
+			_groups = new ObservableCollection<Groups>();
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				var groupList = from gr in db.Groups
+								select new Groups
+								{
+									GroupId = gr.GroupId,
+									GroupName = gr.GroupName,
+									YearFormationGroup = gr.YearFormationGroup,
+									StarostaId = gr.StarostaId
+								};
+				foreach(Groups item in groupList)
+				{
+					_groups.Add(item);
+				}
+			}
+			return _groups;
+		}
+
+		public void ConnectStudentWithGroup(string login,int groupId)
+		{
+			Users student = new Users();
+			StudentGroups sg = new StudentGroups();
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				var st = from us in db.Users
+						 where us.Login == login
+						 select new Users
+						 {
+							 UserId = us.UserId,
+							 FirstName = us.FirstName,
+							 MiddleName = !string.IsNullOrEmpty(us.MiddleName) ? us.MiddleName : string.Empty,
+							 LastName = us.LastName,
+							 Login = us.Login,
+							 PasswordHash = us.PasswordHash,
+							 PasswordSalt = us.PasswordSalt,
+							 AccessLevelId = us.AccessLevelId,
+							 Email = us.Email,
+							 Phone = us.Phone
+						 };
+				foreach(Users item in st)
+				{
+					student = item;
+				}
+
+				sg.GroupId = groupId;
+				sg.UserId = student.UserId;
+
+				db.StudentGroups.Add(sg);
+				db.SaveChanges();
+			}	
+
+		}
 		#endregion
 	}
 }

@@ -126,17 +126,18 @@ namespace ElectronicJournal_Desktop.ViewModel
 			}
 		}
 
-		public int? AccessLevel
+		public AccessLevels AccessLevel
 		{
 			get
 			{
 				if (_newUser == null)
 					_newUser = new Users();
-				return _newUser.AccessLevelId;
+				return _newUser.AccessLevel;
 			}
 			set
 			{
-				_newUser.AccessLevelId = value;
+				_newUser.AccessLevel = value;
+				_newUser.AccessLevelId = value.AccessLevelId;
 				OnPropertyChanged("AccessLevel");
 			}
 		}
@@ -181,12 +182,57 @@ namespace ElectronicJournal_Desktop.ViewModel
 		{
 			get
 			{
+				
 				if (_addNewUserCommand == null)
 				{
-
+					_addNewUserCommand = new RelayCommand(ExecuteAddNewUserCommand,CanExecuteAddNewUserCommand);
 				}
 				return _addNewUserCommand;
 			}
+		}
+
+		bool CanExecuteAddNewUserCommand(object p)
+		{
+			if (string.IsNullOrEmpty(LastName) ||
+				string.IsNullOrEmpty(FirstName) ||
+				string.IsNullOrEmpty(Login) ||
+				string.IsNullOrEmpty(Password))
+				return false;
+			return true;
+		}
+
+		void ExecuteAddNewUserCommand(object p)
+		{
+			if(_managingUserAccounts == null)
+				_managingUserAccounts = new ManagingUserAccountsModel();
+
+			_managingUserAccounts.AddNewUsers(_newUser);
+
+			switch (_newUser.AccessLevelId)
+			{
+				case 1:
+					_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
+					break;
+				case 2:
+					_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
+					break;
+				case 3:
+
+					break;
+				case 4:
+
+					break;
+				case 5:
+
+					break;
+				default:
+					break;
+			}
+
+		}
+		void GoToAddNewUser()
+		{
+			_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
 		}
 
 		#endregion
