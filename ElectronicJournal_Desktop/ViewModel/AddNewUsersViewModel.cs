@@ -217,7 +217,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 					_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
 					break;
 				case 3:
-
+					_navigationManager.Navigate(NavigationKeys.AddNewTeacherView, _newUser);
 					break;
 				case 4:
 

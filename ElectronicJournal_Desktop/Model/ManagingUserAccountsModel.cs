@@ -44,6 +44,7 @@ namespace ElectronicJournal_Desktop.Model
 		FullInfoAdmin _fullInfoAdmin;
 		ObservableCollection<AccessLevels> _accessLevelsList;
 		ObservableCollection<Groups> _groups;
+		ObservableCollection<Positions> _positions;
 		#endregion
 
 
@@ -383,6 +384,66 @@ namespace ElectronicJournal_Desktop.Model
 				db.Users.Update(editUser);
 				db.SaveChanges();
 			}
+		}
+
+		#endregion
+
+		#region Список должностей для преподавателей
+
+		public ObservableCollection<Positions> GetPositions
+		{
+			get
+			{
+				_positions = new ObservableCollection<Positions>();
+				using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+				{
+					var pos = from ps in db.Positions
+							  select new Positions
+							  {
+								  PositionId = ps.PositionId,
+								  PositionName = ps.PositionName
+							  };
+					foreach(Positions item in pos)
+					{
+						_positions.Add(item);
+					}
+				}
+				return _positions;
+			}
+		}
+
+		#endregion
+
+		#region Добавление преподавателей
+
+		public void AddTeacher(string login, int positionId)
+		{
+			
+			int id = 0;
+			Teachers teachers = new Teachers();
+
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				var teach = from us in db.Users
+							where us.Login == login
+							select new
+							{
+								Id = us.UserId
+							};
+
+				foreach(var item in teach)
+				{
+					id = item.Id;
+				}
+
+				teachers.UserId = id;
+				teachers.PositionId = positionId;
+
+				db.Teachers.Add(teachers);
+
+				db.SaveChanges();
+			}
+
 		}
 
 		#endregion
