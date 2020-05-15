@@ -75,7 +75,8 @@
             </Grid>
         </ScrollViewer>
         <StackPanel Grid.Row="2" 
-                    Orientation="Vertical">
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
             <Button Content="Добавить"
                     VerticalAlignment="Center" 
                     HorizontalAlignment="Center"
@@ -83,6 +84,14 @@
                     Padding="5"
                     FontSize="20"
                     Command="{Binding ConnectStudentGroupCommand}"/>
+            <Button Content="Пропустить"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Margin="5"
+                    Padding="5"
+                    FontSize="20"
+                    Command="{Binding MissAddCommand}"/>
+            
         </StackPanel>
     </Grid>
 </UserControl>

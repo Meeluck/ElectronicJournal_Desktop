@@ -48,7 +48,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 			{
 				if (_managingUser == null)
 					_managingUser = new ManagingUserAccountsModel();
-				_groupsList = _managingUser.GetGroups();
+				_groupsList = _managingUser.GetGroups;
 				return _groupsList;
 			}
 		}
@@ -92,6 +92,23 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 			_navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView);
 
+		}
+
+		#endregion
+
+		#region Пропустить добавление группы
+
+		RelayCommand _missAdd;
+		public ICommand MissAddCommand
+		{
+			get
+			{
+				if (_missAdd == null)
+				{
+					_missAdd = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView));
+				}
+				return _missAdd;
+			}
 		}
 
 		#endregion

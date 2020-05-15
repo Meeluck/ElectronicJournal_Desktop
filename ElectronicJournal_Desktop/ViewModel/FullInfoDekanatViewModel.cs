@@ -14,14 +14,15 @@ namespace ElectronicJournal_Desktop.ViewModel
 		readonly INavigationManager _navigationManager;
 		FullInfoDekanat _fullInfo;
 		ManagingUserAccountsModel _managingUser;
-
+		DialogManager _dialogManager;
 		#endregion
 
 		#region Constructor
 
-		public FullInfoDekanatViewModel(INavigationManager navigationManager)
+		public FullInfoDekanatViewModel(INavigationManager navigationManager, DialogManager dialogManager)
 		{
 			_navigationManager = navigationManager;
+			_dialogManager = dialogManager;
 		}
 
 		#endregion

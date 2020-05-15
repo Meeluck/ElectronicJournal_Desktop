@@ -215,27 +215,48 @@ namespace ElectronicJournal_Desktop.Model
 		{
 			get
 			{
-				if (_accessLevelsList == null)
-				{
-					_accessLevelsList = new ObservableCollection<AccessLevels>();
-					using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+				_accessLevelsList = new ObservableCollection<AccessLevels>();
+
+				using (ElectronicalJournalContext db = new ElectronicalJournalContext())
 					{
 						var accessLevels = from al in db.AccessLevels
 										   select new AccessLevels
-										   {
-											   AccessLevelId = al.AccessLevelId,
-											   AccessLevelName = al.AccessLevelName
+										   { 	
+										   AccessLevelId = al.AccessLevelId,
+										   AccessLevelName = al.AccessLevelName
 										   };
-						foreach (var item in accessLevels)
-						{
-							_accessLevelsList.Add(item);
-						}
+					foreach (var item in accessLevels)
+					{
+						_accessLevelsList.Add(item);
+					}
+				}
+				
+				return _accessLevelsList;
+			}
+		}
+
+		public ObservableCollection<AccessLevels> AccessLevelsStudentList
+		{
+			get
+			{
+				_accessLevelsList = new ObservableCollection<AccessLevels>();
+				using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+				{
+					var accessLevels = from al in db.AccessLevels
+									   where al.AccessLevelId <= 2
+									   select new AccessLevels
+									   {
+										   AccessLevelId = al.AccessLevelId,
+										   AccessLevelName = al.AccessLevelName
+									   };
+					foreach (var item in accessLevels)
+					{
+						_accessLevelsList.Add(item);
 					}
 				}
 				return _accessLevelsList;
 			}
 		}
-
 		#endregion
 
 		#region Добавление пользователей
@@ -250,27 +271,37 @@ namespace ElectronicJournal_Desktop.Model
 			}
 		}
 
+		#endregion
 
-		public ObservableCollection<Groups> GetGroups()
+		#region Список групп
+
+		public ObservableCollection<Groups> GetGroups
 		{
-			_groups = new ObservableCollection<Groups>();
-			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			get
 			{
-				var groupList = from gr in db.Groups
-								select new Groups
-								{
-									GroupId = gr.GroupId,
-									GroupName = gr.GroupName,
-									YearFormationGroup = gr.YearFormationGroup,
-									StarostaId = gr.StarostaId
-								};
-				foreach(Groups item in groupList)
+				_groups = new ObservableCollection<Groups>();
+				using (ElectronicalJournalContext db = new ElectronicalJournalContext())
 				{
-					_groups.Add(item);
+					var groupList = from gr in db.Groups
+									select new Groups
+									{
+										GroupId = gr.GroupId,
+										GroupName = gr.GroupName,
+										YearFormationGroup = gr.YearFormationGroup,
+										StarostaId = gr.StarostaId
+									};
+					foreach (Groups item in groupList)
+					{
+						_groups.Add(item);
+					}
 				}
+				return _groups;
 			}
-			return _groups;
 		}
+
+		#endregion
+
+		#region Связывание студент с группой
 
 		public void ConnectStudentWithGroup(string login,int groupId)
 		{
@@ -306,6 +337,54 @@ namespace ElectronicJournal_Desktop.Model
 			}	
 
 		}
+
+		#endregion
+
+		#region Удаление пользователей
+
+		public void DeleteUser(Users user)
+		{
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				db.Users.Remove(user);
+				db.SaveChanges();
+			}
+		}
+
+		#endregion
+
+		#region Редактирование пользователей
+
+		public void EditStudent(FullInfoStudent student)
+		{
+			Users editUser = student;
+			StudentGroups editSGUser = new StudentGroups();
+
+			editUser.AccessLevel = null;
+			
+			using(ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				var studGroup = from sg in db.StudentGroups
+								where sg.UserId == editUser.UserId
+								select new StudentGroups
+								{
+									StudentGroupId = sg.StudentGroupId,
+									UserId = sg.UserId,
+									GroupId = sg.GroupId
+								};
+				foreach (StudentGroups item in studGroup)
+					editSGUser = item;
+
+				if(editSGUser.GroupId != student.GroupId)
+				{
+					editSGUser.GroupId = student.GroupId;
+					db.StudentGroups.Update(editSGUser);
+				}
+				db.Users.Update(editUser);
+				db.SaveChanges();
+			}
+		}
+
 		#endregion
 	}
 }

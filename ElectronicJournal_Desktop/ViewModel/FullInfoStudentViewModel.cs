@@ -15,14 +15,15 @@ namespace ElectronicJournal_Desktop.ViewModel
 		readonly INavigationManager _navigationManager;
 		FullInfoStudent _fullInfo;
 		ManagingUserAccountsModel _managingUser;
-
+		DialogManager _dialogManager;
 		#endregion
 
 		#region Constructor
 
-		public FullInfoStudentViewModel(INavigationManager navigationManager)
+		public FullInfoStudentViewModel(INavigationManager navigationManager, DialogManager dialogManager)
 		{
 			_navigationManager = navigationManager;
+			_dialogManager = dialogManager;
 		}
 
 		#endregion
@@ -53,6 +54,46 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 		#endregion
 
+		#region Удаление
+
+		RelayCommand _deleteStudentCommand;
+
+		public ICommand DeleteStudentCommand
+		{
+			get
+			{
+				if(_deleteStudentCommand == null)
+				{
+					_deleteStudentCommand = new RelayCommand(ExecuteDeleteUserCommand);
+				}
+				return _deleteStudentCommand;
+			}
+		}
+		void ExecuteDeleteUserCommand(object p)
+		{
+			_managingUser.DeleteUser(_fullInfo);
+			_dialogManager.ShowMessage("Пользователь удален");
+			_navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView);
+		}
+		#endregion
+
+		#region Редакитрование
+
+		RelayCommand _editStudentCommand;
+
+		public ICommand EditStudentCommand
+		{
+			get
+			{
+				if (_editStudentCommand == null)
+				{
+					_editStudentCommand = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.EditStudentView, _fullInfo));
+				}
+				return _editStudentCommand;
+			}
+		}
+
+		#endregion
 		#region Назад
 		RelayCommand _goBackCommand;
 

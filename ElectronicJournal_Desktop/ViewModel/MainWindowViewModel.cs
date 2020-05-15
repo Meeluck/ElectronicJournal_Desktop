@@ -139,7 +139,9 @@ namespace ElectronicJournal_Desktop.ViewModel
 				_userSession = UserSession.Instance(User.UserId);
 			}
 			else
-				throw new ArgumentException();
+			{
+				_userSession = UserSession.GetSession;
+			}
 		}
 
 	}

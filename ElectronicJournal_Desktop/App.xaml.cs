@@ -43,22 +43,25 @@ namespace ElectronicJournal_Desktop
 				() => new ReportingViewModel(navigationManager, dialogManager));
 
 			navigationManager.Register<FullInfoStudentView>(NavigationKeys.FullInfoStudentView,
-				() => new FullInfoStudentViewModel(navigationManager));
+				() => new FullInfoStudentViewModel(navigationManager,dialogManager));
 
 			navigationManager.Register<FullInfoTeacherView>(NavigationKeys.FullInfoTeacherView,
-				() => new FullInfoTeacherViewModel(navigationManager));
+				() => new FullInfoTeacherViewModel(navigationManager, dialogManager));
 
 			navigationManager.Register<FullInfoDekanatView>(NavigationKeys.FullInfoDekanatView,
-				() => new FullInfoDekanatViewModel(navigationManager));
+				() => new FullInfoDekanatViewModel(navigationManager, dialogManager));
 
 			navigationManager.Register<FullInfoAdminView>(NavigationKeys.FullInfoAdminView,
-				() => new FullInfoAdminViewModel(navigationManager));
+				() => new FullInfoAdminViewModel(navigationManager, dialogManager));
 
 			navigationManager.Register<AddNewUsersView>(NavigationKeys.AddNewUsersView,
 				() => new AddNewUsersViewModel(navigationManager, dialogManager));
 
 			navigationManager.Register<AddNewStudentView>(NavigationKeys.AddNewStudentView,
 				() => new AddNewStudentViewModel(navigationManager, dialogManager));
+
+			navigationManager.Register<EditStudentView>(NavigationKeys.EditStudentView,
+				() => new EditStudentViewModel(navigationManager, dialogManager));
 
 			//3. Отобразите стартовый UI
 			window.Show();

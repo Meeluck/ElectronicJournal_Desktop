@@ -17,14 +17,15 @@ namespace ElectronicJournal_Desktop.ViewModel
 		private readonly INavigationManager _navigationManager;
 		FullInfoTeacher _fullInfo;
 		ManagingUserAccountsModel _managingUserAccounts;
-
+		DialogManager _dialogManager;
 		#endregion
 
 		#region Constructor
 
-		public FullInfoTeacherViewModel(INavigationManager navigationManager)
+		public FullInfoTeacherViewModel(INavigationManager navigationManager, DialogManager dialogManager)
 		{
 			_navigationManager = navigationManager;
+			_dialogManager = dialogManager;
 		}
 
 		#endregion

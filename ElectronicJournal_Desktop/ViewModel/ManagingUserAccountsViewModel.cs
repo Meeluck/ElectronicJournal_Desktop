@@ -78,13 +78,14 @@ namespace ElectronicJournal_Desktop.ViewModel
 			{
 				if (_fullInfo == null)
 				{
-					_fullInfo = new RelayCommand(ExecuteShowFullInfoCommand, CanExecuteShowFullInfoCommand);
+					_fullInfo = new RelayCommand(ExecuteShowFullInfoCommand, CanExecuteCommand);
 				}
 				return _fullInfo;
 			}
 		}
-		
-		private bool CanExecuteShowFullInfoCommand(object parametr)
+
+
+		private bool CanExecuteCommand(object parametr)
 		{
 			return SelectedUser != null;
 		}
@@ -149,6 +150,24 @@ namespace ElectronicJournal_Desktop.ViewModel
 		}
 
 		#endregion
+
+		#region Переход на главную страницу
+
+		RelayCommand _goBackCommand;
+		public ICommand GoBackCommand
+		{
+			get
+			{
+				if (_goBackCommand == null)
+				{
+					_goBackCommand = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.MainWindow));
+				}
+				return _goBackCommand;
+			}
+		}
+
+		#endregion
+
 
 	}
 }

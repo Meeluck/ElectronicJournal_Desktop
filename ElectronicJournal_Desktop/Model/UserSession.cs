@@ -45,6 +45,13 @@ namespace ElectronicJournal_Desktop.Model
 
 			return _userSession;
 		}
+		public static UserSession GetSession
+		{
+			get
+			{
+				return _userSession;
+			}
+		}
 		public static string GetName
 		{
 			get { return _fullName; }

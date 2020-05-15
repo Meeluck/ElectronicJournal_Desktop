@@ -26,6 +26,13 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="24"/>
+        <Button Content="Назад"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="5"
+                Padding="5"
+                FontSize="18"
+                Command="{Binding GoBackCommand}"/>
 
         <ScrollViewer Grid.Row="2" 
                       Grid.Column="0"  
@@ -71,7 +78,6 @@
                     Command="{Binding ShowFullInfoCommand}">
                 <TextBlock>
                     <Run Text="Подробная информация"/>
-                    <Run Text="{Binding SelectedUser.Login, Mode=OneWay}"/>
                 </TextBlock>
             </Button>
 
@@ -80,14 +86,16 @@
                     Padding="5"
                     FontSize="18"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch" >
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding ShowFullInfoCommand}">
             </Button>
             <Button Content="Удалить аккаунт"
                     Margin="5"
                     Padding="5"
                     FontSize="18"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch" >
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding ShowFullInfoCommand}">
             </Button>
         </StackPanel>
     </Grid>
