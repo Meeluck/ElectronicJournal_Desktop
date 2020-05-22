@@ -66,6 +66,12 @@ namespace ElectronicJournal_Desktop
 			navigationManager.Register<AddNewTeacherView>(NavigationKeys.AddNewTeacherView,
 				() => new AddNewTeacherViewModel(navigationManager, dialogManager));
 
+			navigationManager.Register<EditTeacherView>(NavigationKeys.EditTeacherView,
+				() => new EditTeacherViewModel(navigationManager, dialogManager));
+
+			navigationManager.Register<EditDekanatView>(NavigationKeys.EditDekanatView,
+				() => new EditDekanatViewModel(navigationManager, dialogManager));
+
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);

@@ -139,7 +139,8 @@ namespace ElectronicJournal_Desktop.ViewModel
 		#endregion
 
 
-		#region Редактирование 
+		#region Редактирование
+		
 		RelayCommand _editStudentCommand;
 
 		public ICommand EditStudentCommand
@@ -148,20 +149,15 @@ namespace ElectronicJournal_Desktop.ViewModel
 			{
 				if (_editStudentCommand == null)
 				{
-					_editStudentCommand = new RelayCommand((p)=> _managingUser.EditStudent(_fullInfoStudent), CanExecuteEditStudentCommand);
+					_editStudentCommand = new RelayCommand(ExecuteEditStudentCommand, CanExecuteEditStudentCommand);
 				}
 				return _editStudentCommand;
 			}
 		}
-		public void Test(object p)
+		public void ExecuteEditStudentCommand(object p)
 		{
-			_dialogManager.ShowMessage(_fullInfoStudent.LastName + "\n" +
-				_fullInfoStudent.FirstName + "\n"+
-				_fullInfoStudent.MiddleName + "\n"+
-				_fullInfoStudent.AcessLevelName + "\n" +
-				_fullInfoStudent.Phone + "\n" +
-				_fullInfoStudent.Email + "\n" +
-				_fullInfoStudent.GroupName);
+			_managingUser.EditStudent(_fullInfoStudent);
+			_navigationManager.Navigate(NavigationKeys.FullInfoStudentView, _fullInfoStudent);
 		}
 		public bool CanExecuteEditStudentCommand(object p)
 		{
@@ -202,8 +198,8 @@ namespace ElectronicJournal_Desktop.ViewModel
 			}
 			else
 				throw new ArgumentException();
-			#endregion
 		}
+		#endregion
 
 	}
 }

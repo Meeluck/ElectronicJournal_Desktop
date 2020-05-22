@@ -66,12 +66,59 @@ namespace ElectronicJournal_Desktop.ViewModel
 		}
 		#endregion
 
+		#region Удаление
+
+		RelayCommand _deleteDekanatCommand;
+
+		public ICommand DeleteDekanatCommand
+		{
+			get
+			{
+				if (_deleteDekanatCommand == null)
+				{
+					_deleteDekanatCommand = new RelayCommand(ExecuteDeleteUserCommand);
+				}
+				return _deleteDekanatCommand;
+			}
+		}
+
+		void ExecuteDeleteUserCommand(object p)
+		{
+			_managingUser.DeleteUser(_fullInfo);
+			_dialogManager.ShowMessage("Пользователь удален");
+			_navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView);
+		}
+		#endregion
+
+		#region Редакитрование
+
+		RelayCommand _editCommand;
+
+		public ICommand EditCommand
+		{
+			get
+			{
+				if (_editCommand == null)
+				{
+					_editCommand = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.EditDekanatView, _fullInfo));
+				}
+				return _editCommand;
+			}
+		}
+
+		#endregion
+
 		public void OnNavigatedTo(object arg)
 		{
 			if (arg is int)
 			{
 				_managingUser = new ManagingUserAccountsModel();
 				_fullInfo = _managingUser.FullInfoDekanat(Convert.ToInt32(arg));
+			}
+			else if (arg is FullInfoDekanat)
+			{
+				_managingUser = new ManagingUserAccountsModel();
+				_fullInfo = (FullInfoDekanat)arg;
 			}
 			else
 				throw new ArgumentException();

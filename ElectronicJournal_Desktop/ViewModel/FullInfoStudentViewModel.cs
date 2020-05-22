@@ -69,6 +69,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 				return _deleteStudentCommand;
 			}
 		}
+
 		void ExecuteDeleteUserCommand(object p)
 		{
 			_managingUser.DeleteUser(_fullInfo);
@@ -116,6 +117,11 @@ namespace ElectronicJournal_Desktop.ViewModel
 			{
 				_managingUser = new ManagingUserAccountsModel();
 				_fullInfo = _managingUser.FullInfoStudent(Convert.ToInt32(arg));
+			}
+			else if(arg is FullInfoStudent)
+			{
+				_managingUser = new ManagingUserAccountsModel();
+				_fullInfo = (FullInfoStudent)arg;
 			}
 			else
 				throw new ArgumentException();

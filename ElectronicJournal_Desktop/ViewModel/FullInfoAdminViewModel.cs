@@ -50,6 +50,48 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 		#endregion
 
+		#region Удаление
+
+		RelayCommand _deleteCommand;
+
+		public ICommand DeleteCommand
+		{
+			get
+			{
+				if (_deleteCommand == null)
+				{
+					_deleteCommand = new RelayCommand(ExecuteDeleteUserCommand);
+				}
+				return _deleteCommand;
+			}
+		}
+
+		void ExecuteDeleteUserCommand(object p)
+		{
+			_managingUser.DeleteUser(_fullInfo);
+			_dialogManager.ShowMessage("Пользователь удален");
+			_navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView);
+		}
+		#endregion
+
+		#region Редакитрование
+
+		RelayCommand _editCommand;
+
+		public ICommand EditCommand
+		{
+			get
+			{
+				if (_editCommand == null)
+				{
+					_editCommand = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.EditDekanatView, _fullInfo));
+				}
+				return _editCommand;
+			}
+		}
+
+		#endregion
+
 		#region Назад
 		RelayCommand _goBackCommand;
 
@@ -72,6 +114,11 @@ namespace ElectronicJournal_Desktop.ViewModel
 			{
 				_managingUser = new ManagingUserAccountsModel();
 				_fullInfo = _managingUser.FullInfoAdmin(Convert.ToInt32(arg));
+			}
+			else if(arg is FullInfoAdmin)
+			{
+				_managingUser = new ManagingUserAccountsModel();
+				_fullInfo = (FullInfoAdmin)arg;
 			}
 			else
 				throw new ArgumentException();

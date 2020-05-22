@@ -112,13 +112,9 @@ namespace ElectronicJournal_Desktop.Context
                     .HasName("AK_Groups_GroupName")
                     .IsUnique();
 
-                entity.HasIndex(e => e.StarostaId);
-
                 entity.Property(e => e.GroupName).IsRequired();
 
-                entity.HasOne(d => d.Starosta)
-                    .WithMany(p => p.Groups)
-                    .HasForeignKey(d => d.StarostaId);
+
             });
 
             modelBuilder.Entity<LessonTypes>(entity =>

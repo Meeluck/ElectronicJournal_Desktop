@@ -206,27 +206,35 @@ namespace ElectronicJournal_Desktop.ViewModel
 			if(_managingUserAccounts == null)
 				_managingUserAccounts = new ManagingUserAccountsModel();
 
-			_managingUserAccounts.AddNewUsers(_newUser);
 
-			switch (_newUser.AccessLevelId)
+			if (!_managingUserAccounts.AddNewUsers(_newUser))
 			{
-				case 1:
-					_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
-					break;
-				case 2:
-					_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
-					break;
-				case 3:
-					_navigationManager.Navigate(NavigationKeys.AddNewTeacherView, _newUser);
-					break;
-				case 4:
-
-					break;
-				case 5:
-
-					break;
-				default:
-					break;
+				_dialogManager.ShowMessage($"Пользователь с логин {_newUser.Login} уже существует\n" +
+					$"Введите другой логин");
+				Login = null;
+			}
+			else
+			{
+				switch (_newUser.AccessLevelId)
+				{
+					case 1:
+						_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
+						break;
+					case 2:
+						_navigationManager.Navigate(NavigationKeys.AddNewStudentView, _newUser);
+						break;
+					case 3:
+						_navigationManager.Navigate(NavigationKeys.AddNewTeacherView, _newUser);
+						break;
+					case 4:
+						_navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView);
+						break;
+					case 5:
+						_navigationManager.Navigate(NavigationKeys.ManagingUserAccountsView);
+						break;
+					default:
+						break;
+				}
 			}
 
 		}

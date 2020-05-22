@@ -14,9 +14,7 @@ namespace ElectronicJournal_Desktop.Model.Data
         public int GroupId { get; set; }
         public string GroupName { get; set; }
         public DateTime YearFormationGroup { get; set; }
-        public int? StarostaId { get; set; }
 
-        public virtual Users Starosta { get; set; }
         public virtual ICollection<GroupLessons> GroupLessons { get; set; }
         public virtual ICollection<StudentGroups> StudentGroups { get; set; }
     }

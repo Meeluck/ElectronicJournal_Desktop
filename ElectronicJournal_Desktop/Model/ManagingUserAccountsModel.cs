@@ -7,6 +7,7 @@ using ElectronicJournal_Desktop.Context;
 using ElectronicJournal_Desktop.Model.Data;
 using System.Collections.ObjectModel;
 using ElectronicJournal_Desktop.View;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicJournal_Desktop.Model
 {
@@ -262,13 +263,21 @@ namespace ElectronicJournal_Desktop.Model
 
 		#region Добавление пользователей
 
-		public void AddNewUsers(Users user)
+		public bool AddNewUsers(Users user)
 		{
 			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
 			{
-				user.AccessLevel = null;
-				db.Users.Add(user);
-				db.SaveChanges();
+				try
+				{
+					user.AccessLevel = null;
+					db.Users.Add(user);
+					db.SaveChanges();
+					return true;
+				}
+				catch (DbUpdateException)
+				{
+					return false;
+				}
 			}
 		}
 
@@ -289,7 +298,6 @@ namespace ElectronicJournal_Desktop.Model
 										GroupId = gr.GroupId,
 										GroupName = gr.GroupName,
 										YearFormationGroup = gr.YearFormationGroup,
-										StarostaId = gr.StarostaId
 									};
 					foreach (Groups item in groupList)
 					{
@@ -359,10 +367,9 @@ namespace ElectronicJournal_Desktop.Model
 		public void EditStudent(FullInfoStudent student)
 		{
 			Users editUser = student;
-			StudentGroups editSGUser = new StudentGroups();
 
-			editUser.AccessLevel = null;
-			
+			StudentGroups editSGUser = null;
+
 			using(ElectronicalJournalContext db = new ElectronicalJournalContext())
 			{
 				var studGroup = from sg in db.StudentGroups
@@ -376,7 +383,18 @@ namespace ElectronicJournal_Desktop.Model
 				foreach (StudentGroups item in studGroup)
 					editSGUser = item;
 
-				if(editSGUser.GroupId != student.GroupId)
+				if (editSGUser == null && student.GroupId != null)
+				{
+					StudentGroups sg = new StudentGroups();
+					sg.GroupId = student.GroupId;
+					sg.UserId = student.UserId;
+					db.StudentGroups.Add(sg);
+				}
+				else if (editSGUser == null)
+				{
+
+				}
+				else if(editSGUser.GroupId != student.GroupId) 
 				{
 					editSGUser.GroupId = student.GroupId;
 					db.StudentGroups.Update(editSGUser);
@@ -385,7 +403,54 @@ namespace ElectronicJournal_Desktop.Model
 				db.SaveChanges();
 			}
 		}
+		public void EditTeacher(FullInfoTeacher teacher)
+		{
+			Users editUser = teacher;
+			Teachers editTeachers = null;
 
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				var teach = from tc in db.Teachers
+							where tc.UserId == editUser.UserId
+							select new Teachers
+							{
+								TeacherId = tc.TeacherId,
+								PositionId = tc.PositionId,
+								UserId = tc.UserId
+							};
+				foreach (Teachers item in teach)
+					editTeachers = item;
+
+				if (editTeachers == null && teacher.PositionId != null)
+				{
+					Teachers tc = new Teachers();
+					tc.UserId = teacher.UserId;
+					tc.PositionId = teacher.PositionId;
+					db.Teachers.Add(tc);
+				}
+				else if (editTeachers == null) 
+				{
+
+				}
+				else if (editTeachers.PositionId != teacher.PositionId)
+				{
+					editTeachers.PositionId = teacher.PositionId;
+					db.Teachers.Update(editTeachers);
+				}
+				db.Users.Update(editUser);
+				db.SaveChanges();
+			}
+		}
+
+		public void EditDekanat(Users user)
+		{
+			using (ElectronicalJournalContext db =new ElectronicalJournalContext())
+			{
+				db.Users.Update(user);
+				db.SaveChanges();
+			}
+
+		}
 		#endregion
 
 		#region Список должностей для преподавателей

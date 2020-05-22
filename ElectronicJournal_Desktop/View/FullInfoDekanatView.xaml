@@ -13,13 +13,18 @@
             <Setter Property="Control.Margin" Value="5" />
             <Setter Property="Control.VerticalAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="Button">
+            <Setter Property="ItemsControl.FontSize" Value="18"/>
+            <Setter Property="ItemsControl.Margin" Value="5"/>
+            <Setter Property="ItemsControl.Padding" Value="5"/>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>
             <RowDefinition/>
-
+            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
@@ -70,7 +75,19 @@
                 <TextBlock Text="{Binding Phone}"
                            Style="{StaticResource Text}"/>
             </StackPanel>
+        </StackPanel>
 
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <Button Content="Удалить"
+                    Style="{StaticResource Button}"
+                    Command="{Binding DeleteDekanatCommand}"/>
+            <Button Content="Редакиторовать"
+                    Style="{StaticResource Button}"
+                    Command="{Binding EditCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
