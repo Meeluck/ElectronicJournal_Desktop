@@ -59,7 +59,6 @@ namespace ElectronicJournal_Desktop.ViewModel
 		#endregion
 
 
-
 		#region Добавлнеие новой группы
 
 		RelayCommand _addGroup;
@@ -91,6 +90,24 @@ namespace ElectronicJournal_Desktop.ViewModel
 				return _goBack;
 			}
 		}
+
+		#endregion
+
+		#region Отображение подробной информации о группе
+
+		RelayCommand _fullInfoGroup;
+
+		public ICommand FullInfoGroupCommand
+		{
+			get
+			{
+				if (_fullInfoGroup == null)
+					_fullInfoGroup = new RelayCommand((p)=>_navigationManager.Navigate(NavigationKeys.FullInfoGroupView,_selectedGroup.GroupId),
+														(p) => (_selectedGroup == null ? false : true));
+				return _fullInfoGroup;
+			}
+		}
+
 
 		#endregion
 	}

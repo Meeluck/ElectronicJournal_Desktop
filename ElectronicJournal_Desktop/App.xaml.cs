@@ -17,13 +17,13 @@ namespace ElectronicJournal_Desktop
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			var window = new MainWindow();
-			//Создайте менеджер навигации
+			//Создаем менеджер навигации
 			var navigationManager = new NavigationManager(window);
-
+			//showBox
 			var dialogManager = new DialogManager();
 
 			//2. Определите правила навигации: 
-			//зарегистрируйте ключ (строку) с соответствующими View и ViewModel для него
+			// регистрируем ключ с соответствующими View и ViewModel для него
 			navigationManager.Register<AuthorizationView>(NavigationKeys.AuthorizationView,
 				() => new AuthorizationViewModel(navigationManager, dialogManager));
 
@@ -74,6 +74,9 @@ namespace ElectronicJournal_Desktop
 
 			navigationManager.Register<AddNewGroupView>(NavigationKeys.AddNewGroupView,
 				() => new AddNewGroupViewModel(navigationManager, dialogManager));
+
+			navigationManager.Register<FullInfoGroupView>(NavigationKeys.FullInfoGroupView,
+				() => new FullInfoGroupViewModel(navigationManager, dialogManager));
 
 			//3. Отобразите стартовый UI
 			window.Show();

@@ -22,6 +22,6 @@ namespace ElectronicJournal_Desktop.Constants
         public const string EditTeacherView = nameof(EditTeacherView);
         public const string EditDekanatView = nameof(EditDekanatView);
         public const string AddNewGroupView = nameof(AddNewGroupView);
-
+        public const string FullInfoGroupView = nameof(FullInfoGroupView);
     }
 }

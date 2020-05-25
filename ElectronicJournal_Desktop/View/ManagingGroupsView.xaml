@@ -72,7 +72,7 @@
                     FontSize="18"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" 
-                    Command="{Binding }">
+                    Command="{Binding FullInfoGroupCommand}">
                 <TextBlock>
                     <Run Text="Подробная информация"/>
                 </TextBlock>
