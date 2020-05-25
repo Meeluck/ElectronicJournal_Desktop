@@ -5,12 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ElectronicJournal_Desktop.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="400" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.75*"/>
+
+        </Grid.ColumnDefinitions>
 
         <TextBlock
             Text="Управление группами"
@@ -18,6 +24,76 @@
             VerticalAlignment="Center"
             FontSize="24"
             Margin="5"
-            Padding="5"/>
+            Padding="5"
+            Grid.ColumnSpan="2"/>
+        <Button Content="Назад"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="15"
+                Padding="5"
+                FontSize="18"
+                Command="{Binding GoBackCommand}"/>
+        <ScrollViewer Grid.Row="2" 
+                      Grid.Column="0"  
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="5">
+            <ListView Margin="5"
+                      Padding="5"
+                      ItemsSource="{Binding GroupsList}"
+                      HorizontalAlignment="Stretch"
+                      FontSize="16"
+                      SelectedItem="{Binding SelectedGroup, Mode=TwoWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Группа"
+                                        DisplayMemberBinding="{Binding Path=GroupName, Mode=OneWay}"/>
+                        <GridViewColumn Header="Год формирования"
+                                        DisplayMemberBinding="{Binding Path=YearFormationGroup,Mode=OneWay}"/>
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    VerticalAlignment="Center">
+            
+            <Button Content="Добавить группу"
+                    Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding AddGroupCommand}">
+            </Button>
+
+            <Button Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding }">
+                <TextBlock>
+                    <Run Text="Подробная информация"/>
+                </TextBlock>
+            </Button>
+
+            <Button Content="Редактировать ифномарцию о группе"
+                    Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding }">
+            </Button>
+            <Button Content="Удалить группу"
+                    Margin="5"
+                    Padding="5"
+                    FontSize="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" 
+                    Command="{Binding }">
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

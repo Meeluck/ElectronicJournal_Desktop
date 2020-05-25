@@ -72,6 +72,9 @@ namespace ElectronicJournal_Desktop
 			navigationManager.Register<EditDekanatView>(NavigationKeys.EditDekanatView,
 				() => new EditDekanatViewModel(navigationManager, dialogManager));
 
+			navigationManager.Register<AddNewGroupView>(NavigationKeys.AddNewGroupView,
+				() => new AddNewGroupViewModel(navigationManager, dialogManager));
+
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);

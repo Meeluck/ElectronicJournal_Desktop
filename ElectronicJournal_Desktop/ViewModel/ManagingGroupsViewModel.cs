@@ -6,6 +6,7 @@ using ElectronicJournal_Desktop.Constants;
 using ElectronicJournal_Desktop.Model;
 using ElectronicJournal_Desktop.Model.Data;
 using ElectronicJournal_Desktop.Context;
+using System.Collections.ObjectModel;
 
 namespace ElectronicJournal_Desktop.ViewModel
 {
@@ -14,9 +15,10 @@ namespace ElectronicJournal_Desktop.ViewModel
 	{
 		#region Fields
 
-		private readonly INavigationManager _navigationManager;
-		private readonly DialogManager _dialogManager;
-
+		readonly INavigationManager _navigationManager;
+		readonly DialogManager _dialogManager;
+		ObservableCollection<Groups> _groupsList;
+		Groups _selectedGroup;
 		#endregion
 
 		#region Constructor
@@ -25,6 +27,69 @@ namespace ElectronicJournal_Desktop.ViewModel
 		{
 			_navigationManager = navigationManager;
 			_dialogManager = dialogManager;
+		}
+
+		#endregion
+
+		#region Отображение групп
+
+		public ObservableCollection<Groups> GroupsList
+		{
+			get
+			{
+				if (_groupsList == null)
+				{
+					ManagingUserAccountsModel _managingUserAccounts = new ManagingUserAccountsModel();
+					_groupsList = _managingUserAccounts.GetGroups;
+				}
+				return _groupsList;
+			}
+		}
+
+		public Groups SelectedGroup
+		{
+			get { return _selectedGroup; }
+			set
+			{
+				_selectedGroup = value;
+				OnPropertyChanged("SelectedGroup");
+			}
+		}
+
+		#endregion
+
+
+
+		#region Добавлнеие новой группы
+
+		RelayCommand _addGroup;
+
+		public ICommand AddGroupCommand
+		{
+			get
+			{
+				if (_addGroup == null)
+				{
+					_addGroup = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.AddNewGroupView));
+				}
+				return _addGroup;
+			}
+		}
+
+		#endregion
+
+		#region Назад
+
+		RelayCommand _goBack;
+
+		public ICommand GoBackCommand
+		{
+			get
+			{
+				if (_goBack == null)
+					_goBack = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.MainWindow));
+				return _goBack;
+			}
 		}
 
 		#endregion

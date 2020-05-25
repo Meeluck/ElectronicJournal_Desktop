@@ -9,8 +9,8 @@
              d:DesignHeight="400" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -29,7 +29,7 @@
         <Button Content="Назад"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
-                Margin="5"
+                Margin="15"
                 Padding="5"
                 FontSize="18"
                 Command="{Binding GoBackCommand}"/>

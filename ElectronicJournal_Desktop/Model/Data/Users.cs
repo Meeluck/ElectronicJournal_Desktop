@@ -7,7 +7,6 @@ namespace ElectronicJournal_Desktop.Model.Data
         public Users()
         {
             AcademicPerformances = new HashSet<AcademicPerformances>();
-            Groups = new HashSet<Groups>();
         }
 
         public int UserId { get; set; }
@@ -25,6 +24,5 @@ namespace ElectronicJournal_Desktop.Model.Data
         public virtual StudentGroups StudentGroups { get; set; }
         public virtual Teachers Teachers { get; set; }
         public virtual ICollection<AcademicPerformances> AcademicPerformances { get; set; }
-        public virtual ICollection<Groups> Groups { get; set; }
     }
 }
