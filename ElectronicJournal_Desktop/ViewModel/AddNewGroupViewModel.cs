@@ -18,7 +18,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 		readonly INavigationManager _navigationManager;
 		readonly DialogManager _dialogManager;
 		string _groupName;
-		DateTime _date;
+		DateTime _date = DateTime.Today;
 		#endregion
 
 		#region Ctor
@@ -88,6 +88,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 			_navigationManager.Navigate(NavigationKeys.ManagingGroupsView);
 		}
+
 		bool CanExecuteAddGroupCommand(object p)
 		{
 			if (string.IsNullOrEmpty(GroupName) || _date == null)

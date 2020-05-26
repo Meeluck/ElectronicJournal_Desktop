@@ -84,7 +84,7 @@
                     FontSize="18"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" 
-                    Command="{Binding }">
+                    Command="{Binding FullInfoGroupCommand}">
             </Button>
             <Button Content="Удалить группу"
                     Margin="5"
@@ -92,7 +92,7 @@
                     FontSize="18"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" 
-                    Command="{Binding }">
+                    Command="{Binding FullInfoGroupCommand}">
             </Button>
         </StackPanel>
     </Grid>

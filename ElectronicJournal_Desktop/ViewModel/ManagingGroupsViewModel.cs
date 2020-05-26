@@ -108,7 +108,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 			}
 		}
 
-
 		#endregion
+
 	}
 }

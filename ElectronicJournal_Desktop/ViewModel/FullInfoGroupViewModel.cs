@@ -59,6 +59,49 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 		#endregion
 
+		#region Удаление группы
+
+		RelayCommand _deleteGroup;
+
+		public ICommand DeleteGroupCommand
+		{
+			get
+			{
+				if (_deleteGroup == null)
+					_deleteGroup = new RelayCommand(ExecuteDeleteGroupCommand);
+				return _deleteGroup;
+			}
+		}
+
+		void ExecuteDeleteGroupCommand(object p)
+		{
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				db.Groups.Remove(_group);
+				db.SaveChanges();
+			}
+			_dialogManager.ShowMessage("Группа удалена");
+			_navigationManager.Navigate(NavigationKeys.ManagingGroupsView);
+		}
+
+		#endregion
+
+		#region Редакитроавние группы
+
+		RelayCommand _editGroup;
+
+		public ICommand EditGroupCommand
+		{
+			get
+			{
+				if (_editGroup == null)
+					_editGroup = new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.EditGroupView,_group));
+				return _editGroup;
+			}
+		}
+
+		#endregion
+
 		#region Инициализация 
 		public void OnNavigatedTo(object arg)
 		{
