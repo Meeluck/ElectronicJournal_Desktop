@@ -3,18 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ElectronicJournal_Desktop.View"
+             xmlns:local="clr-namespace:ElectronicJournal_Desktop.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid><Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+             d:DesignHeight="400" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0.75*"/>
-        </Grid.ColumnDefinitions>
+
         <Label
             Grid.ColumnSpan="2"
             Content="Упарвление расписание"
@@ -23,8 +20,55 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="24"/>
+        <Button Content="Назад"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="5"
+                Padding="5"
+                FontSize="20"
+                Command="{Binding GoBackCommand}"/>
         
-        
-        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="0.75*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListView  Margin="5"
+                           Padding="5"
+                           ItemsSource="{Binding GroupsList}"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           FontSize="16"
+                           SelectedItem="{Binding SelectedGroup, Mode=TwoWay}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Список групп"
+                                            DisplayMemberBinding="{Binding Path=GroupName, Mode=OneWay}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <Button Content="Просмотреть занятия группы"
+                        Margin="5"
+                        Padding="5"
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding ViewLessonCommand}"/>
+                <Button Content="Добавить занятие"
+                        Margin="5"
+                        Padding="5"
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch" 
+                        Command="{Binding AddNewLessonCommand}"/>
+            </StackPanel>
+        </Grid>
+
+
+
     </Grid>
 </UserControl>

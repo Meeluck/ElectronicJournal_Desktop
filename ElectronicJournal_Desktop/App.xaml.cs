@@ -81,6 +81,12 @@ namespace ElectronicJournal_Desktop
 			navigationManager.Register<EditGroupView>(NavigationKeys.EditGroupView,
 				() => new EditGroupViewModel(navigationManager, dialogManager));
 
+			navigationManager.Register<LessonListView>(NavigationKeys.LessonListView,
+				() => new LessonListViewModel(navigationManager, dialogManager));
+
+			navigationManager.Register<FullInfoLessonView>(NavigationKeys.FullInfoLessonView,
+				() => new FullInfoLessonViewModel(navigationManager, dialogManager));
+
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);
