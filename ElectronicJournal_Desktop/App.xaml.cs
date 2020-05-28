@@ -87,6 +87,9 @@ namespace ElectronicJournal_Desktop
 			navigationManager.Register<FullInfoLessonView>(NavigationKeys.FullInfoLessonView,
 				() => new FullInfoLessonViewModel(navigationManager, dialogManager));
 
+			navigationManager.Register<AddNewLessonView>(NavigationKeys.AddNewLessonView,
+				() => new AddNewLessonViewModel(navigationManager, dialogManager));
+
 			//3. Отобразите стартовый UI
 			window.Show();
 			navigationManager.Navigate(NavigationKeys.AuthorizationView);

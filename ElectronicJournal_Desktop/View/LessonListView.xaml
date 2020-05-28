@@ -82,16 +82,17 @@
                     VerticalAlignment="Center">
                 <Button Content="Добавить новое занятие"
                         Style="{StaticResource Button}"
-                        Command="{Binding }"/>
+                        Command="{Binding AddNewLessonCommand}"/>
                 <Button Content="Подробраня информация по занятию"
                         Style="{StaticResource Button}"
                         Command="{Binding FullInfoLessonCommand}"/>
-                <Button Content="Редактировать занятие"
-                        Style="{StaticResource Button}"
-                        Command="{Binding }"/>
                 <Button Content="Удалить занятие"
                         Style="{StaticResource Button}"
                         Command="{Binding }"/>
+                <Button Content="Редактировать занятие"
+                        Style="{StaticResource Button}"
+                        Command="{Binding }"
+                        Visibility="Hidden"/>
                 
             </StackPanel>
         </Grid>

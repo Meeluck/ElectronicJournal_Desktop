@@ -117,7 +117,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 								}
 								lessons[i].Teachers = teachersList.ToString();
 								_lessonsList.Add(lessons[i]);
-								i = j;
+								i = j-1;
 								teachersList.Clear();
 							}
 						}
@@ -170,6 +170,15 @@ namespace ElectronicJournal_Desktop.ViewModel
 			{
 				return new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.FullInfoLessonView, _selectedLessons),
 										(p) => _selectedLessons == null ? false : true);
+			}
+		}
+		#endregion
+		#region Добавить новое занятие
+		public ICommand AddNewLessonCommand
+		{
+			get
+			{
+				return new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.AddNewLessonView, _group.GroupId));
 			}
 		}
 		#endregion

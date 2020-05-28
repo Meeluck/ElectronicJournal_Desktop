@@ -30,6 +30,7 @@ namespace ElectronicJournal_Desktop.Constants
 
         public const string LessonListView = nameof(LessonListView);
         public const string FullInfoLessonView = nameof(FullInfoLessonView);
+        public const string AddNewLessonView = nameof(AddNewLessonView);
 
     }
 }

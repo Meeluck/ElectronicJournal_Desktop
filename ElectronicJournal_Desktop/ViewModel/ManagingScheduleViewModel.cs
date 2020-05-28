@@ -77,14 +77,12 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 		#endregion
 
-#warning ИСПРАВИТЬ ПЕРЕХОД для добавления новых занятий
 		#region Добавление занятие
-
 		public ICommand AddNewLessonCommand
 		{
 			get
 			{
-				return new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.LessonListView, SelectedGroup.GroupId),
+				return new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.AddNewLessonView, SelectedGroup.GroupId),
 					(p) => SelectedGroup == null ? false : true);
 			}
 		}
