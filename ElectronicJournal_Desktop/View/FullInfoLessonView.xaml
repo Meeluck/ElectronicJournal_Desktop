@@ -107,8 +107,7 @@
                     HorizontalAlignment="Center">
             <Button Content="Удалить"
                     Style="{StaticResource Button}"
-                    Command="{Binding}"
-                    Visibility="Hidden"/>
+                    Command="{Binding DeleteLessonCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,8 +1,12 @@
 ﻿using Egor92.MvvmNavigation.Abstractions;
 using ElectronicJournal_Desktop.Constants;
+using ElectronicJournal_Desktop.Context;
 using ElectronicJournal_Desktop.Infrastructure;
+using ElectronicJournal_Desktop.Model.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
@@ -55,6 +59,30 @@ namespace ElectronicJournal_Desktop.ViewModel
 			{
 				return new RelayCommand((p) => _navigationManager.Navigate(NavigationKeys.LessonListView, _lessonInfo.GroupId)); 
 			}
+		}
+		#endregion
+		#region Delete
+		RelayCommand _deleteLesson;
+		public ICommand DeleteLessonCommand
+		{
+			get
+			{
+				if (_deleteLesson == null)
+					_deleteLesson = new RelayCommand(ExecuteDeleteLessonCommand);
+				return _deleteLesson;
+			}
+		}
+
+		void ExecuteDeleteLessonCommand(object p)
+		{
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				Lessons delLes = db.Lessons.Find(_lessonInfo.LessonId);
+				db.Lessons.Remove(delLes);
+				db.SaveChanges();
+			}
+			_dialogManager.ShowMessage("Занятие удалено");
+			_navigationManager.Navigate(NavigationKeys.LessonListView, _lessonInfo.GroupId);
 		}
 		#endregion
 

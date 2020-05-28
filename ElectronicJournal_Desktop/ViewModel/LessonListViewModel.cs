@@ -173,6 +173,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 			}
 		}
 		#endregion
+
 		#region Добавить новое занятие
 		public ICommand AddNewLessonCommand
 		{
@@ -182,6 +183,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 			}
 		}
 		#endregion
+		
 
 
 

@@ -88,11 +88,11 @@
                         Command="{Binding FullInfoLessonCommand}"/>
                 <Button Content="Удалить занятие"
                         Style="{StaticResource Button}"
-                        Command="{Binding }"/>
-                <Button Content="Редактировать занятие"
+                        Command="{Binding FullInfoLessonCommand}"/>
+                <!--<Button Content="Редактировать занятие"
                         Style="{StaticResource Button}"
                         Command="{Binding }"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"/>-->
                 
             </StackPanel>
         </Grid>
