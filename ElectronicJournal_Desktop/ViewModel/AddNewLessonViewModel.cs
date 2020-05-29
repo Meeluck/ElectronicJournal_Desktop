@@ -168,22 +168,18 @@ namespace ElectronicJournal_Desktop.ViewModel
 
 		void ExecuteAddNewLessonCommand(object p)
 		{
-			_dialogManager.ShowMessage($"{SelectedSubject.SubjectId} {SelectedSubject.SubjectName}\n" +
-				$"{SelectedLessonDate}\n" +
-				$"{SelectedTimeSchedule.TimeScheduleId}  {SelectedTimeSchedule.TimeInterval}\n" +
-				$"{SelectedLessonType.LessonTypeId}  {SelectedLessonType.LessonTypeName}\n" +
-				$"{SelectedTeacher.TeacherId}  {SelectedTeacher.FullName}\n" +
-				$"{SelectedClassroom.ClassroomId}  {SelectedClassroom.ClassroomName}");
 
 			Lessons newLesson = new Lessons
 			{
 				Date = SelectedLessonDate,
-				TimeScheduleId = SelectedTimeSchedule.TimeScheduleId,
 				SubjectId = SelectedSubject.SubjectId,
-				LessonTypeId = SelectedLessonType.LessonTypeId,
-				ClassroomId = SelectedClassroom.ClassroomId
 			};
-			
+			if (SelectedClassroom != null)
+				newLesson.ClassroomId = SelectedClassroom.ClassroomId;
+			if (SelectedTimeSchedule != null)
+				newLesson.TimeScheduleId = SelectedTimeSchedule.TimeScheduleId;
+			if (SelectedLessonType != null)
+				newLesson.LessonTypeId = SelectedLessonType.LessonTypeId;
 
 			GroupLessons groupLessons = new GroupLessons
 			{
@@ -207,7 +203,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 		}
 		bool CanExecuteAddNewLessonCommand(object p)
 		{
-			if (SelectedSubject == null || SelectedLessonDate == null)
+			if (SelectedSubject == null || SelectedLessonDate == null || SelectedTeacher == null)
 				return false;
 			return true;
 		}

@@ -84,6 +84,12 @@
             <Label Content="Преподаватель"
                    Style="{StaticResource Text}"
                    Grid.Row="4"/>
+            <Label Grid.Row="4"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Content="*"
+                   FontSize="22"
+                   ToolTip="Обязательно для заполнения"/>
             <Label Content="Аудитория"
                    Style="{StaticResource Text}"
                    Grid.Row="5"/>
