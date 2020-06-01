@@ -236,6 +236,38 @@ namespace ElectronicJournal_Desktop.Model
 				return _accessLevelsList;
 			}
 		}
+		public ObservableCollection<AccessLevels> AccessLevels(int userAL)
+		{
+			_accessLevelsList = new ObservableCollection<AccessLevels>();
+			using (ElectronicalJournalContext db = new ElectronicalJournalContext())
+			{
+				if (userAL == 4)
+				{
+					_accessLevelsList = new ObservableCollection<AccessLevels>
+						(
+						(from al in db.AccessLevels
+						  where al.AccessLevelId <= 3
+						  select new AccessLevels
+						  {
+							  AccessLevelId = al.AccessLevelId,
+							  AccessLevelName = al.AccessLevelName
+						  }).ToList());
+				}
+				else
+				{
+					_accessLevelsList = new ObservableCollection<AccessLevels>
+						(
+						(from al in db.AccessLevels
+						 select new AccessLevels
+						 {
+							 AccessLevelId = al.AccessLevelId,
+							 AccessLevelName = al.AccessLevelName
+						 }).ToList());
+				}
+			}
+			return _accessLevelsList;
+			
+		}
 
 		public ObservableCollection<AccessLevels> AccessLevelsStudentList
 		{

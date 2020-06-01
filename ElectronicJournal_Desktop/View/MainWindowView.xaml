@@ -96,9 +96,9 @@
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
-            </Button>
+            </Button> 
 
-            <Button Margin="5" 
+            <!--<Button Margin="5" 
                     Padding="5"
                     Content="Формирование отчета успеваемости"
                     FontSize="18"
@@ -112,7 +112,7 @@
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
-            </Button>
+            </Button>-->
 
         </StackPanel>
 

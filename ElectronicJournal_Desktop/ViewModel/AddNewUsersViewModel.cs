@@ -120,7 +120,7 @@ namespace ElectronicJournal_Desktop.ViewModel
 				if (_accessLevels == null)
 				{
 					_managingUserAccounts = new ManagingUserAccountsModel();
-					_accessLevels = _managingUserAccounts.AccessLevelsList;
+					_accessLevels = _managingUserAccounts.AccessLevels(UserSession.AccessLevelId);
 				}
 				return _accessLevels;
 			}
